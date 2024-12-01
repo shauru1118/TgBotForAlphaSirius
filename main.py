@@ -1,17 +1,17 @@
 import types
 
 import telebot
-from urllib3.filepost import choose_boundary
 
 from cmds import *
 from forDataBase import *
-from background import *
 
 
 bot_api = '7693616242:AAE8mHR_9dh2EXpb7EeSQFXRHkCFwSjYqSQ'
 bot = telebot.TeleBot(bot_api)
 service = ""
 fio = ""
+
+bot.send_message(5572914505, "Bot is online!")
 
 def make_keyboard(one: bool, *args):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=4, one_time_keyboard=one)
@@ -96,7 +96,6 @@ def support(message: types.Message):
 
 def support_ans(message):
     bot.send_message(5572914505, text=f'Поддержка! \n{message.chat.id} {message.from_user.first_name}\n\n{message.text}')
-    bot.send_message(6508967648, text=f'Поддержка! \n{message.chat.id} {message.from_user.first_name}\n\n{message.text}')
     bot.send_message(message.chat.id, "Ваш запрос принят!")
     monitoring(message)
 
@@ -127,5 +126,4 @@ def print_hi(name):
 
 if __name__ == '__main__':
     print_hi('Albert')
-    keep_alive()
     bot.infinity_polling(timeout=10, long_polling_timeout=5)
